@@ -1,0 +1,12 @@
+[package]
+name = "frustal"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pixels = "0.14.0"                                               # For pixel-level rendering
+winit = { version = "0.30.5", features = ["rwh_05"] }           # For window creation and event handling
+rand = "0.8.5"                                                  # For parallel computation
+rayon = "1.10.0"                                                # For parallel computation
+num = "0.4.0"                                                   # For floating point arithmetic
+bigdecimal = "0.4.0"                                            # For floating point arithmetic
