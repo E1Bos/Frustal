@@ -1,22 +1,25 @@
-use frustal::{App, Args};
+mod args;
+use args::Args;
+
+mod fractals;
+mod renderer;
+
+use winit::error::EventLoopError;
 use num::Complex;
-use winit::event_loop::{ControlFlow, EventLoop};
 
-fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let args = Args::new(
+// Example position
+// upper left: -2.5690780055377322+1.4248376056487224i, 1.3964634498916704-2.5407038497806793i
+
+fn main() -> Result<(), EventLoopError> {
+    let renderer_runner = renderer::RendererRunner::new().with_args(Args::new(
         500,
         500,
-        500,
+        300,
         false,
-        Complex::new(0.0.into(), 0.0.into()),
-        Complex::new(0.0.into(), 0.0.into()),
-    );
-
-    let event_loop: EventLoop<()> = EventLoop::new().unwrap();
-    event_loop.set_control_flow(ControlFlow::Wait);
-
-    let mut app = App::new(args);
-    event_loop.run_app(&mut app)?;
+        Complex::new(-2.5, 1.5),
+        Complex::new(1.5, -2.5),
+    ));
+    renderer_runner.run()?;
 
     Ok(())
 }
